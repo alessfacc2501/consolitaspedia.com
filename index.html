@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consolitaspedia - La Enciclopedia Definitiva de Consolas y Videojuegos</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            900: '#14532d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #111827;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #4b5563;
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col justify-between custom-scrollbar selection:bg-brand-500 selection:text-white">
+
+    <!-- Top Navigation -->
+    <nav class="sticky top-0 z-40 bg-gray-900/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-gradient-to-tr from-brand-600 to-emerald-400 p-2.5 rounded-xl shadow-lg shadow-brand-500/20 text-white">
+                    <i class="fa-solid fa-gamepad text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-gray-200 to-brand-500 bg-clip-text text-transparent">
+                        Consolitaspedia
+                    </span>
+                    <span class="hidden sm:inline-block ml-2 px-2 py-0.5 text-xs font-semibold bg-brand-500/10 text-brand-400 border border-brand-500/20 rounded-full">
+                        v2.5 Pro
+                    </span>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <button onclick="openGithubModal()" class="inline-flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 text-gray-200 px-3.5 py-2 rounded-xl text-sm font-medium transition border border-gray-700 shadow-sm">
+                    <i class="fa-brands fa-github text-base"></i>
+                    <span class="hidden md:inline">Repositorio</span>
+                </button>
+                <button onclick="copyFullCode()" class="inline-flex items-center space-x-2 bg-brand-600 hover:bg-brand-500 text-white px-4 py-2 rounded-xl text-sm font-semibold transition shadow-lg shadow-brand-600/25">
+                    <i class="fa-solid fa-code"></i>
+                    <span id="copy-btn-text">Copiar Código Completo HTML</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-12">
+        <!-- Hero Section -->
+        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-b from-gray-900 to-gray-900/60 border border-gray-800 p-8 sm:p-12 shadow-2xl">
+            <div class="absolute -right-16 -top-16 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="relative z-10 max-w-2xl space-y-6">
+                <span class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-semibold uppercase tracking-wider">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>La Enciclopedia Definitiva</span>
+                </span>
+                <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
+                    Explora la historia de las consolas y videojuegos
+                </h1>
+                <p class="text-gray-400 text-base sm:text-lg">
+                    Descubre especificaciones técnicas, generaciones, juegos icónicos y datos históricos de todas las plataformas que marcaron una era en la industria del entretenimiento.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <div class="flex items-center space-x-2 bg-gray-800/80 border border-gray-700/60 px-4 py-2.5 rounded-xl text-sm text-gray-300">
+                        <i class="fa-solid fa-microchip text-brand-400"></i>
+                        <span class="font-bold text-white" id="stat-console-count">50+</span> Consolas registradas
+                    </div>
+                    <div class="flex items-center space-x-2 bg-gray-800/80 border border-gray-700/60 px-4 py-2.5 rounded-xl text-sm text-gray-300">
+                        <i class="fa-solid fa-compact-disc text-brand-400"></i>
+                        <span class="font-bold text-white">8 Generaciones</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Section -->
+        <section class="space-y-6">
+            <div class="flex items-center justify-between">
+                <h2 class="text-2xl font-bold tracking-tight text-white flex items-center space-x-2">
+                    <i class="fa-solid fa-star text-amber-400 text-lg"></i>
+                    <span>Consolas Destacadas</span>
+                </h2>
+                <span class="text-xs text-gray-400 font-medium uppercase tracking-wider" id="nav-console-count">50+ Consolas</span>
+            </div>
+            <div id="featured-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically populated -->
+            </div>
+        </section>
+
+        <!-- Catalog Section -->
+        <section class="space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <h2 class="text-2xl font-bold tracking-tight text-white flex items-center space-x-2">
+                    <i class="fa-solid fa-cubes text-brand-400 text-lg"></i>
+                    <span>Catálogo Completo</span>
+                </h2>
+                <div class="flex flex-wrap items-center gap-3">
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500">
+                            <i class="fa-solid fa-search"></i>
+                        </span>
+                        <input type="text" id="search-input" oninput="filterConsoles()" placeholder="Buscar consola..." class="bg-gray-900 border border-gray-800 rounded-xl pl-9 pr-4 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 w-full sm:w-64 transition">
+                    </div>
+                    <select id="generation-filter" onchange="filterConsoles()" class="bg-gray-900 border border-gray-800 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-brand-500 transition">
+                        <option value="">Todas las Generaciones</option>
+                        <option value="1">1ª Generación</option>
+                        <option value="2">2ª Generación</option>
+                        <option value="3">3ª Generación</option>
+                        <option value="4">4ª Generación</option>
+                        <option value="5">5ª Generación</option>
+                        <option value="6">6ª Generación</option>
+                        <option value="7">7ª Generación</option>
+                        <option value="8">8ª Generación</option>
+                        <option value="9">9ª Generación</option>
+                    </select>
+                </div>
+            </div>
+            <div id="consoles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically populated -->
+            </div>
+        </section>
+
+        <!-- Games Section -->
+        <section class="space-y-6">
+            <div class="flex items-center justify-between">
+                <h2 class="text-2xl font-bold tracking-tight text-white flex items-center space-x-2">
+                    <i class="fa-solid fa-gamepad text-indigo-400 text-lg"></i>
+                    <span>Videojuegos Icónicos</span>
+                </h2>
+                <span class="text-xs text-gray-400 font-medium uppercase tracking-wider">Joyas Históricas</span>
+            </div>
+            <div id="games-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Dynamically populated -->
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="space-y-6">
+            <div class="flex items-center justify-between">
+                <h2 class="text-2xl font-bold tracking-tight text-white flex items-center space-x-2">
+                    <i class="fa-solid fa-circle-question text-emerald-400 text-lg"></i>
+                    <span>Preguntas Frecuentes</span>
+                </h2>
+            </div>
+            <div id="faq-container" class="space-y-4">
+                <!-- Dynamically populated -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 mt-16 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-400">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-gamepad text-brand-500"></i>
+                <span class="font-bold text-white">Consolitaspedia</span> &copy; 2026 - Todos los derechos reservados.
+            </div>
+            <p class="text-xs text-gray-500">Creado con pasión para los amantes de la historia de los videojuegos.</p>
+        </div>
+    </footer>
+
+    <!-- Console Modal -->
+    <div id="console-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+        <div class="bg-gray-900 border border-gray-800 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar p-6 sm:p-8 space-y-6 relative shadow-2xl">
+            <button onclick="closeConsoleModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 w-9 h-9 rounded-full flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="modal-content" class="space-y-6">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- GitHub Modal -->
+    <div id="github-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+        <div class="bg-gray-900 border border-gray-800 rounded-3xl max-w-md w-full p-6 sm:p-8 space-y-6 relative shadow-2xl text-center">
+            <button onclick="closeGithubModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 w-9 h-9 rounded-full flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="w-16 h-16 bg-brand-500/10 border border-brand-500/20 text-brand-400 rounded-2xl flex items-center justify-center mx-auto text-2xl">
+                <i class="fa-brands fa-github"></i>
+            </div>
+            <div class="space-y-2">
+                <h3 class="text-xl font-bold text-white">Repositorio de Consolitaspedia</h3>
+                <p class="text-sm text-gray-400">Puedes descargar el archivo fuente completo en HTML o copiar el código directamente desde la aplicación web.</p>
+            </div>
+            <div class="flex flex-col gap-3 pt-2">
+                <button onclick="downloadCodeFile()" class="w-full bg-brand-600 hover:bg-brand-500 text-white py-3 rounded-xl font-semibold transition flex items-center justify-center space-x-2 shadow-lg shadow-brand-600/25">
+                    <i class="fa-solid fa-download"></i>
+                    <span>Descargar index.html</span>
+                </button>
+                <button onclick="closeGithubModal()" class="w-full bg-gray-800 hover:bg-gray-700 text-gray-300 py-3 rounded-xl font-medium transition">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application JavaScript -->
+    <script>
+        const consolesData = [
+            {
+                id: 1,
+                name: "Nintendo Entertainment System (NES)",
+                generation: 3,
+                company: "Nintendo",
+                releaseYear: 1983,
+                unitsSold: "61.91 millones",
+                image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop",
+                description: "La videoconsola de 8 bits que revitalizó la industria de los videojuegos tras la crisis de 1983 en Norteamérica.",
+                specs: { cpu: "Ricoh 6502 (8-bit)", memory: "2 KB RAM", media: "Cartucho" },
+                iconicGames: ["Super Mario Bros.", "The Legend of Zelda", "Metroid"]
+            },
+            {
+                id: 2,
+                name: "Sega Genesis / Mega Drive",
+                generation: 4,
+                company: "Sega",
+                releaseYear: 1988,
+                unitsSold: "30.75 millones",
+                image: "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=800&auto=format&fit=crop",
+                description: "La icónica consola de 16 bits de Sega que popularizó la era de los gráficos rápidos y el famoso lema 'Genesis does what Nintendon't'.",
+                specs: { cpu: "Motorola 68000 (16-bit)", memory: "64 KB RAM", media: "Cartucho" },
+                iconicGames: ["Sonic the Hedgehog", "Streets of Rage 2", "Golden Axe"]
+            },
+            {
+                id: 3,
+                name: "PlayStation",
+                generation: 5,
+                company: "Sony",
+                releaseYear: 1994,
+                unitsSold: "102.49 millones",
+                image: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=800&auto=format&fit=crop",
+                description: "La primera consola de Sony que revolucionó el mercado al introducir el formato CD-ROM y los gráficos 3D poligonales masivos.",
+                specs: { cpu: "R3000A (32-bit RISC)", memory: "2 MB RAM", media: "CD-ROM" },
+                iconicGames: ["Final Fantasy VII", "Metal Gear Solid", "Crash Bandicoot"]
+            },
+            {
+                id: 4,
+                name: "PlayStation 2",
+                generation: 6,
+                company: "Sony",
+                releaseYear: 2000,
+                unitsSold: "155 millones",
+                image: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=800&auto=format&fit=crop",
+                description: "La consola más vendida de todos los tiempos. Destacó por su reproductor de DVD integrado y un catálogo legendario.",
+                specs: { cpu: "Emotion Engine (128-bit)", memory: "32 KB RAM + 32 MB VRAM", media: "DVD-ROM, CD-ROM" },
+                iconicGames: ["Grand Theft Auto: San Andreas", "God of War", "Shadow of the Colossus"]
+            },
+            {
+                id: 5,
+                name: "Xbox 360",
+                generation: 7,
+                company: "Microsoft",
+                releaseYear: 2005,
+                unitsSold: "84 millones",
+                image: "https://images.unsplash.com/photo-1605901309584-818e2596098f?q=80&w=800&auto=format&fit=crop",
+                description: "Pionera en el juego en línea moderno gracias a Xbox Live y líder indiscutible en la era HD de la séptima generación.",
+                specs: { cpu: "Xenon 3.2 GHz PowerPC (3 núcleos)", memory: "512 MB GDDR3", media: "DVD-ROM" },
+                iconicGames: ["Halo 3", "Gears of War", "BioShock"]
+            },
+            {
+                id: 6,
+                name: "Nintendo Switch",
+                generation: 8,
+                company: "Nintendo",
+                releaseYear: 2017,
+                unitsSold: "140+ millones",
+                image: "https://images.unsplash.com/photo-1578303512597-81e6cc155b2e?q=80&w=800&auto=format&fit=crop",
+                description: "Innovadora consola híbrida que permite jugar tanto en el televisor del hogar como en modo portátil en cualquier lugar.",
+                specs: { cpu: "Nvidia Tegra X1 personalizado", memory: "4 GB LPDDR4", media: "Cartucho y Digital" },
+                iconicGames: ["The Legend of Zelda: Breath of the Wild", "Super Mario Odyssey", "Animal Crossing: New Horizons"]
+            }
+        ];
+
+        const gamesData = [
+            {
+                title: "Super Mario Bros.",
+                console: "NES (1985)",
+                genre: "Plataformas",
+                image: "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=600&auto=format&fit=crop",
+                desc: "El juego que definió el género de plataformas y salvó la industria."
+            },
+            {
+                title: "The Legend of Zelda: Ocarina of Time",
+                console: "Nintendo 64 (1998)",
+                genre: "Aventura / RPG",
+                image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=600&auto=format&fit=crop",
+                desc: "Considerado por muchos críticos como el mejor videojuego de la historia."
+            },
+            {
+                title: "Grand Theft Auto V",
+                console: "Multiplataforma (2013)",
+                genre: "Mundo Abierto",
+                image: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=600&auto=format&fit=crop",
+                desc: "Uno de los productos de entretenimiento más exitosos y lucrativos de todos los tiempos."
+            },
+            {
+                title: "Minecraft",
+                console: "Multiplataforma (2011)",
+                genre: "Sandbox / Supervivencia",
+                image: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=600&auto=format&fit=crop",
+                desc: "El videojuego más vendido del mundo gracias a su libertad creativa infinita."
+            }
+        ];
+
+        const faqData = [
+            {
+                q: "¿Qué es Consolitaspedia?",
+                a: "Consolitaspedia es una enciclopedia interactiva digital diseñada para recopilar la historia, especificaciones técnicas y los juegos más emblemáticos de todas las consolas de videojuegos desde la primera generación."
+            },
+            {
+                q: "¿Cuál ha sido la consola más vendida de la historia?",
+                a: "Actualmente, la PlayStation 2 de Sony ostenta el récord histórico con más de 155 millones de unidades vendidas en todo el mundo."
+            },
+            {
+                q: "¿Cómo puedo descargar el código completo?",
+                a: "Puedes hacer clic en el botón superior 'Copiar Código Completo HTML' o abrir el modal de Repositorio para descargar directamente el archivo index.html."
+            }
+        ];
+
+        function renderFeaturedConsoles() {
+            const container = document.getElementById('featured-grid');
+            const featured = consolesData.slice(0, 3);
+            container.innerHTML = featured.map(c => `
+                <div onclick="openConsoleModal(${c.id})" class="group bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden hover:border-brand-500/50 transition cursor-pointer flex flex-col justify-between shadow-xl hover:shadow-brand-500/5">
+                    <div class="relative h-48 overflow-hidden bg-gray-950">
+                        <img src="${c.image}" alt="${c.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-80 group-hover:opacity-100">
+                        <div class="absolute top-3 left-3 bg-gray-900/90 backdrop-blur-md border border-gray-700 px-3 py-1 rounded-xl text-xs font-semibold text-brand-400">
+                            ${c.generation}ª Gen
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
+                        <div class="space-y-1">
+                            <span class="text-xs text-gray-400 font-medium">${c.company} &bull; ${c.releaseYear}</span>
+                            <h3 class="text-lg font-bold text-white group-hover:text-brand-400 transition">${c.name}</h3>
+                            <p class="text-sm text-gray-400 line-clamp-2">${c.description}</p>
+                        </div>
+                        <div class="pt-4 flex items-center justify-between text-xs text-gray-500 border-t border-gray-800">
+                            <span>Ventas: <strong class="text-gray-300">${c.unitsSold}</strong></span>
+                            <span class="text-brand-400 font-medium group-hover:translate-x-1 transition flex items-center space-x-1">
+                                <span>Ver detalles</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderConsoles(data) {
+            const container = document.getElementById('consoles-grid');
+            if (data.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full py-12 text-center text-gray-500 space-y-2">
+                        <i class="fa-solid fa-face-frown text-3xl"></i>
+                        <p class="text-base font-medium">No se encontraron consolas con los filtros seleccionados.</p>
+                    </div>
+                `;
+                return;
+            }
+            container.innerHTML = data.map(c => `
+                <div onclick="openConsoleModal(${c.id})" class="group bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden hover:border-brand-500/50 transition cursor-pointer flex flex-col justify-between shadow-xl">
+                    <div class="relative h-48 overflow-hidden bg-gray-950">
+                        <img src="${c.image}" alt="${c.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-80 group-hover:opacity-100">
+                        <div class="absolute top-3 left-3 bg-gray-900/90 backdrop-blur-md border border-gray-700 px-3 py-1 rounded-xl text-xs font-semibold text-brand-400">
+                            ${c.generation}ª Gen
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
+                        <div class="space-y-1">
+                            <span class="text-xs text-gray-400 font-medium">${c.company} &bull; ${c.releaseYear}</span>
+                            <h3 class="text-lg font-bold text-white group-hover:text-brand-400 transition">${c.name}</h3>
+                            <p class="text-sm text-gray-400 line-clamp-2">${c.description}</p>
+                        </div>
+                        <div class="pt-4 flex items-center justify-between text-xs text-gray-500 border-t border-gray-800">
+                            <span>Ventas: <strong class="text-gray-300">${c.unitsSold}</strong></span>
+                            <span class="text-brand-400 font-medium group-hover:translate-x-1 transition flex items-center space-x-1">
+                                <span>Ver detalles</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderGames(data) {
+            const container = document.getElementById('games-grid');
+            container.innerHTML = data.map(g => `
+                <div class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden p-5 space-y-4 shadow-lg flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="h-36 rounded-xl overflow-hidden bg-gray-950">
+                            <img src="${g.image}" alt="${g.title}" class="w-full h-full object-cover opacity-80">
+                        </div>
+                        <div class="space-y-1">
+                            <span class="text-[11px] uppercase tracking-wider font-semibold text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 px-2.5 py-0.5 rounded-full inline-block">${g.genre}</span>
+                            <h3 class="text-base font-bold text-white">${g.title}</h3>
+                            <p class="text-xs text-gray-400">${g.console}</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-400 pt-2 border-t border-gray-800/60">${g.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('faq-container');
+            container.innerHTML = faqData.map(f => `
+                <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 space-y-2 shadow-lg">
+                    <h3 class="text-base font-bold text-white flex items-center space-x-2">
+                        <i class="fa-solid fa-circle-chevron-right text-brand-500 text-sm"></i>
+                        <span>${f.q}</span>
+                    </h3>
+                    <p class="text-sm text-gray-400 pl-5">${f.a}</p>
+                </div>
+            `).join('');
+        }
+
+        function filterConsoles() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const gen = document.getElementById('generation-filter').value;
+            
+            const filtered = consolesData.filter(c => {
+                const matchesQuery = c.name.toLowerCase().includes(query) || c.company.toLowerCase().includes(query);
+                const matchesGen = gen === "" || c.generation.toString() === gen;
+                return matchesQuery && matchesGen;
+            });
+
+            renderConsoles(filtered);
+        }
+
+        function openConsoleModal(id) {
+            const c = consolesData.find(item => item.id === id);
+            if (!c) return;
+
+            const modalContent = document.getElementById('modal-content');
+            modalContent.innerHTML = `
+                <div class="space-y-4">
+                    <div class="relative h-64 rounded-2xl overflow-hidden bg-gray-950 border border-gray-800">
+                        <img src="${c.image}" alt="${c.name}" class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 bg-gray-900/95 backdrop-blur-md border border-gray-700 px-3 py-1 rounded-xl text-xs font-semibold text-brand-400">
+                            ${c.generation}ª Generación
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <span class="text-xs text-gray-400 font-medium uppercase tracking-wider">${c.company} &bull; Lanzamiento: ${c.releaseYear}</span>
+                        <h2 class="text-2xl font-bold text-white">${c.name}</h2>
+                        <p class="text-sm text-gray-300 leading-relaxed">${c.description}</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                        <div class="bg-gray-950 border border-gray-800/80 p-3.5 rounded-xl space-y-1">
+                            <span class="text-[11px] text-gray-500 uppercase tracking-wider font-semibold block">CPU</span>
+                            <span class="text-xs font-medium text-gray-200 block">${c.specs.cpu}</span>
+                        </div>
+                        <div class="bg-gray-950 border border-gray-800/80 p-3.5 rounded-xl space-y-1">
+                            <span class="text-[11px] text-gray-500 uppercase tracking-wider font-semibold block">Memoria</span>
+                            <span class="text-xs font-medium text-gray-200 block">${c.specs.memory}</span>
+                        </div>
+                        <div class="bg-gray-950 border border-gray-800/80 p-3.5 rounded-xl space-y-1">
+                            <span class="text-[11px] text-gray-500 uppercase tracking-wider font-semibold block">Formato</span>
+                            <span class="text-xs font-medium text-gray-200 block">${c.specs.media}</span>
+                        </div>
+                    </div>
+                    <div class="space-y-2 pt-2">
+                        <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Juegos Icónicos</h4>
+                        <div class="flex flex-wrap gap-2">
+                            ${c.iconicGames.map(game => `<span class="bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs px-3 py-1.5 rounded-xl font-medium">${game}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-gray-800 flex items-center justify-between text-xs text-gray-400">
+                        <span>Unidades vendidas estimadas:</span>
+                        <strong class="text-white text-sm">${c.unitsSold}</strong>
+                    </div>
+                </div>
+            `;
+            document.getElementById('console-modal').classList.remove('hidden');
+            document.getElementById('console-modal').classList.add('flex');
+        }
+
+        function closeConsoleModal() {
+            document.getElementById('console-modal').classList.add('hidden');
+            document.getElementById('console-modal').classList.remove('flex');
+        }
+
+        function openGithubModal() {
+            document.getElementById('github-modal').classList.remove('hidden');
+            document.getElementById('github-modal').classList.add('flex');
+        }
+
+        function closeGithubModal() {
+            document.getElementById('github-modal').classList.add('hidden');
+            document.getElementById('github-modal').classList.remove('flex');
+        }
+
+        function copyFullCode() {
+            const htmlContent = document.documentElement.outerHTML;
+            const textarea = document.createElement('textarea');
+            textarea.value = htmlContent;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            const btnText = document.getElementById('copy-btn-text');
+            btnText.textContent = "¡Código Copiado!";
+            setTimeout(() => {
+                btnText.textContent = "Copiar Código Completo HTML";
+            }, 3000);
+        }
+
+        function downloadCodeFile() {
+            const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'index.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // --- INIT APP ---
+        window.onload = function () {
+            document.getElementById('nav-console-count').textContent = `${consolesData.length}+`;
+            document.getElementById('stat-console-count').textContent = `${consolesData.length}+`;
+            renderFeaturedConsoles();
+            renderConsoles(consolesData);
+            renderGames(gamesData);
+            renderQuestions();
+        };
+    </script>
+</body>
+</html>
